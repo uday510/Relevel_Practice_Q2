@@ -66,3 +66,18 @@ exports.updateUser = async (req, res) => {
         });
     }
 }
+
+exports.getUser = async (req, res) => {
+
+    const queryObj = {
+        address: {
+            $near: {
+                $geometry: {
+                    type: 'Point',
+                    coordinates: [req.query.lat, req.query.long]
+                },
+                $maxDistance: req.query.maxDistance
+            }
+        }
+    }
+}
